@@ -19,6 +19,8 @@ namespace mp2lab7plexes {
 		TChart* Plex1;
 		TChart* Plex2;
 		TPoint* CurrPoint;
+		TPoint* CurrPoint1;
+		TPoint* CurrPoint2;
 		Point* pp = new Point;
 		Point* newPoint = new Point;
 		TChart* NewLine;
@@ -44,6 +46,12 @@ namespace mp2lab7plexes {
 			CurrPoint = new TPoint;
 			CurrPoint->SetX(0);
 			CurrPoint->SetY(0);
+			CurrPoint1 = new TPoint;
+			CurrPoint1->SetX(0);
+			CurrPoint1->SetY(0);
+			CurrPoint2 = new TPoint;
+			CurrPoint2->SetX(0);
+			CurrPoint2->SetY(0);
 		}
 	public:
 		Graphics^ gr;
@@ -280,8 +288,8 @@ namespace mp2lab7plexes {
 		{
 			*pp = PointToClient(Control::MousePosition);
 			CurrPoint = Plex->SetPoint(gr, pp->X, pp->Y);
-			CurrPoint = Plex1->SetPoint(gr, pp->X, pp->Y);
-			CurrPoint = Plex2->SetPoint(gr, pp->X, pp->Y);
+			CurrPoint1 = Plex1->SetPoint(gr, pp->X, pp->Y);
+			CurrPoint2 = Plex2->SetPoint(gr, pp->X, pp->Y);
 		}
 	}
 	private: System::Void MyForm_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -298,10 +306,10 @@ namespace mp2lab7plexes {
 			Plex->AddLine(gr, CurrPoint, NewLine);
 			Plex->Show(gr);
 
-			Plex1->AddLine(gr, CurrPoint, NewLine);
+			Plex1->AddLine(gr, CurrPoint1, NewLine);
 			Plex1->Show(gr);
 
-			Plex2->AddLine(gr, CurrPoint, NewLine);
+			Plex2->AddLine(gr, CurrPoint2, NewLine);
 			Plex2->Show(gr);
 		}
 	}

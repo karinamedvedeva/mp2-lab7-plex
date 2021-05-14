@@ -76,13 +76,19 @@ public:
 
 	virtual void Show(Graphics^ gr) 
 	{
-		gr->DrawEllipse(Pens::DarkGoldenrod, x - 2, y - 2, 4, 4);
+		Pen^ pen;
+		pen = gcnew Pen(Color::DarkGoldenrod);
+		pen->Width = 3.f;
+		gr->DrawEllipse(pen, x - 2, y - 2, 4, 4);
 		Visible = true;
 	}
 
 	virtual void Hide(Graphics^ gr)
 	{
-		gr->DrawEllipse(Pens::LightBlue, x - 2, y - 2, 4, 4);
+		Pen^ pen;
+		pen = gcnew Pen(Color::LightBlue);
+		pen->Width = 7.f;
+		gr->DrawEllipse(pen, x - 2, y - 2, 4, 4);
 		Visible = false;
 	}
 };
@@ -143,13 +149,16 @@ public:
 			pLast = l;
 	}
 	
-	 void Show(Graphics^ gr) 
+	 void Show(Graphics^ gr)
 	{
 		TLine CurrLine;
 		CurrLine.pChart = this;
 		CurrLine.pFp = CurrLine.pLp = NULL;
 		TRoot* pr;
 		TPoint* pp;
+		Pen^ pen;
+		pen = gcnew Pen(Color::DarkGoldenrod);
+		pen->Width = 3.f;
 
 		St.Clear();
 		St.Push(CurrLine);
@@ -191,7 +200,7 @@ public:
 			}
 			if (CurrLine.pFp != NULL && CurrLine.pLp != NULL)
 			{
-				gr->DrawLine(Pens::DarkGoldenrod, CurrLine.pFp->GetX(), CurrLine.pFp->GetY(), CurrLine.pLp->GetX(), CurrLine.pLp->GetY());
+				gr->DrawLine(pen, CurrLine.pFp->GetX(), CurrLine.pFp->GetY(), CurrLine.pLp->GetX(), CurrLine.pLp->GetY());
 				pp = CurrLine.pLp;
 				if (!St.Empty())
 				{
@@ -213,6 +222,9 @@ public:
 		CurrLine.pFp = CurrLine.pLp = NULL;
 		TRoot* pr;
 		TPoint* pp;
+		Pen^ pen;
+		pen = gcnew Pen(Color::LightBlue);
+		pen->Width = 5.f;
 
 		St.Clear();
 		St.Push(CurrLine);
@@ -254,7 +266,7 @@ public:
 			}
 			if (CurrLine.pFp != NULL && CurrLine.pLp != NULL)
 			{
-				gr->DrawLine(Pens::LightBlue, CurrLine.pFp->GetX(), CurrLine.pFp->GetY(), CurrLine.pLp->GetX(), CurrLine.pLp->GetY());
+				gr->DrawLine(pen, CurrLine.pFp->GetX(), CurrLine.pFp->GetY(), CurrLine.pLp->GetX(), CurrLine.pLp->GetY());
 				pp = CurrLine.pLp;
 				if (!St.Empty())
 				{
